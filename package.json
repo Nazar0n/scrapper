@@ -1,0 +1,18 @@
+{
+  "name": "willhaben-scrapper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "cheerio": "^1.1.2",
+    "node-telegram-bot-api": "^0.66.0",
+    "willhaben": "^0.2.1"
+  }
+}
