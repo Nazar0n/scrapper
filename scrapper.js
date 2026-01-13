@@ -40,7 +40,7 @@ const mainboards = ['B350', 'B450', 'B550', 'X370', 'X470', 'X570', 'A320', 'A52
         name: model,
         keyword: model,
         category: willhaben.getCategories.mainboards,
-        file: 'known_B350.json',
+        file: `known_${model}.json`,
     }),
 );
 
@@ -50,67 +50,67 @@ const SEARCH_TASKS = [
         name: '3060',
         keyword: 'ddr4',
         category: willhaben.getCategories['ram-speicher-arbeitsspeicher'],
-        file: 'known_3060.json',
+        file: 'known_ddr4.json',
     },
     {
         name: '3060',
         keyword: 'Rx 6700',
         category: willhaben.getCategories.grafikkarten,
-        file: 'known_3060.json',
+        file: 'known_rx_6700.json',
     },
     {
         name: '3060',
         keyword: 'Rx 6600',
         category: willhaben.getCategories.grafikkarten,
-        file: 'known_3060.json',
+        file: 'known_rx_6600.json',
     },
     {
         name: '3060',
         keyword: '7 5800',
         category: willhaben.getCategories['cpus-prozessoren'],
-        file: 'known_3060.json',
+        file: 'known_7_5800.json',
     },
     {
         name: '3060',
         keyword: '7 5700',
         category: willhaben.getCategories['cpus-prozessoren'],
-        file: 'known_3060.json',
+        file: 'known_7_5700.json',
     },
     {
         name: '3060',
         keyword: '5 5600',
         category: willhaben.getCategories['cpus-prozessoren'],
-        file: 'known_3060.json',
+        file: 'known_5_5600.json',
     },
     {
         name: '3060',
         keyword: '5 3600',
         category: willhaben.getCategories['cpus-prozessoren'],
-        file: 'known_3060.json',
+        file: 'known_5_3600.json',
     },
     {
         name: '3060',
         keyword: '',
         category: willhaben.getCategories.netzteile,
-        file: 'known_3060.json',
+        file: 'known_netzteile.json',
     },
     {
         name: '3060',
         keyword: '2080',
         category: willhaben.getCategories.grafikkarten,
-        file: 'known_3060.json',
+        file: 'known_2080.json',
     },
     {
         name: '3060',
         keyword: '2070',
         category: willhaben.getCategories.grafikkarten,
-        file: 'known_3060.json',
+        file: 'known_2070.json',
     },
     {
         name: '3060',
         keyword: '2060',
         category: willhaben.getCategories.grafikkarten,
-        file: 'known_3060.json',
+        file: 'known_2060.json',
     },
     {
         name: '3060',
@@ -221,7 +221,13 @@ async function monitorTask(task) {
         let known = [];
         try {
             if (fs.existsSync(file)) {
-                known = JSON.parse(fs.readFileSync(file, 'utf8'));
+              const raw = fs.readFileSync(file, 'utf8').trim();
+
+              if (!raw) {
+                known = [];
+              } else {
+                known = JSON.parse(raw);
+              }
             }
         } catch (fileErr) {
             console.error(`Помилка читання ${file}:`, fileErr.message);
